@@ -1,4 +1,5 @@
 const debug = require('debug')('app:user-controller');
+const User = require('../models/User.model');
 
 exports.getUsers = (req, res, next) => {
   res.status(200).json({
@@ -14,10 +15,12 @@ exports.getUser = (req, res, next) => {
   });
 };
 
-exports.createUser = (req, res, next) => {
+exports.createUser = async (req, res, next) => {
+  const user = await User.create(req.body);
+
   res.status(201).json({
     success: true,
-    message: 'User created',
+    data: user,
   });
 };
 
