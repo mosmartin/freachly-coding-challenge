@@ -1,8 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const debug = require('debug')('app:server');
+const userRoute = require('../src/routes/user.routes');
 
+// instantiate the app
 const app = express();
+
+// mount routes
+app.use('/api/v1/users', userRoute);
 
 const PORT = process.env.PORT;
 
