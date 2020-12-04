@@ -1,10 +1,12 @@
 const debug = require('debug')('app:user-controller');
 const User = require('../models/User.model');
 
-exports.getUsers = (req, res, next) => {
+exports.getUsers = async (req, res, next) => {
+  const users = await User.find();
+
   res.status(200).json({
     success: true,
-    message: 'Get all users',
+    data: users,
   });
 };
 
