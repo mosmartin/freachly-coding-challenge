@@ -22,10 +22,13 @@ const userSchema = new Schema({
     unique: true,
     trim: true,
   },
+  // createdatedAt: {
+  //   type: Number,
+  //   default: Date.now,
+  // },
   updatedAt: {
-    // type: Number,
-    // default: Date.now,
-    currentTime: () => Math.floor(Date.now() / 1000),
+    type: Number,
+    default: Date.now,
   },
   username: {
     type: String,
