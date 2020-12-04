@@ -10,10 +10,12 @@ exports.getUsers = async (req, res, next) => {
   });
 };
 
-exports.getUser = (req, res, next) => {
+exports.getUser = async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+
   res.status(200).json({
     success: true,
-    message: 'Get single users',
+    data: user,
   });
 };
 
