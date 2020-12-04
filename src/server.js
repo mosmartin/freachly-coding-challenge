@@ -11,19 +11,22 @@ const log = require('./middleware/logger');
 // instantiate the app
 const app = express();
 
+// connect to the database
+dbConnect();
+
 // secure server by setting various HTTP headers.
 app.use(helmet());
 
 // handle cors
 app.use(cors());
 
+// use the body parser middleware
+app.use(express.json());
+
 // dev logging middleware
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
-
-// connect to the database
-dbConnect();
 
 // mount routes
 app.use('/api/v1/users', userRoute);
