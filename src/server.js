@@ -4,6 +4,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const debug = require('debug')('app:server');
+const errorHandler = require('./middleware/errors');
 const dbConnect = require('../config/database');
 const userRoute = require('../src/routes/user.routes');
 const log = require('./middleware/logger');
@@ -30,6 +31,9 @@ if (process.env.NODE_ENV === 'development') {
 
 // mount routes
 app.use('/api/v1/users', userRoute);
+
+// error handling middleware
+app.use(errorHandler);
 
 const PORT = process.env.PORT;
 

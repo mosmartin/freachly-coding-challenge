@@ -1,5 +1,8 @@
 const debug = require('debug')('app:user-controller');
+const ErrorResponse = require('../utils/ErrorResponse');
+const asyncHandler = require('../middleware/async');
 const User = require('../models/User.model');
+const log = require('../middleware/logger');
 
 exports.getUsers = async (req, res, next) => {
   const users = await User.find();
@@ -10,61 +13,73 @@ exports.getUsers = async (req, res, next) => {
   });
 };
 
-exports.getUser = async (req, res, next) => {
+exports.getUser = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.params.id);
 
   if (!user) {
-    return res.status(404).json({
-      success: false,
-      message: 'User Not Found',
-    });
+    log.error(
+      `[User with id: ${req.params.id} not found.] : [Hostname: ${req.hostname}] : [Remote IP Address: ${req.ip}] : [Resource URL: ${req.originalUrl}] : [Request Method: ${req.method}]`
+    );
+
+    return next(
+      new ErrorResponse(`User with id: ${req.params.id} not found.`),
+      404
+    );
   }
 
   res.status(200).json({
     success: true,
     data: user,
   });
-};
+});
 
-exports.createUser = async (req, res, next) => {
+exports.createUser = asyncHandler(async (req, res, next) => {
   const user = await User.create(req.body);
 
   res.status(201).json({
     success: true,
     data: user,
   });
-};
+});
 
-exports.updateUser = async (req, res, next) => {
+exports.updateUser = asyncHandler(async (req, res, next) => {
   const user = await User.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
   });
 
   if (!user) {
-    return res.status(404).json({
-      success: false,
-      message: 'User Not Found',
-    });
+    log.error(
+      `[User with id: ${req.params.id} not found.] : [Hostname: ${req.hostname}] : [Remote IP Address: ${req.ip}] : [Resource URL: ${req.originalUrl}] : [Request Method: ${req.method}]`
+    );
+
+    return next(
+      new ErrorResponse(`User with id: ${req.params.id} not found.`),
+      404
+    );
   }
 
   res.status(200).json({
     success: true,
     data: user,
   });
-};
+});
 
-exports.deleteUser = async (req, res, next) => {
+exports.deleteUser = asyncHandler(async (req, res, next) => {
   const user = await User.findByIdAndDelete(req.params.id);
 
   if (!user) {
-    return res.status(404).json({
-      success: false,
-      message: 'User Not Found',
-    });
+    log.error(
+      `[User with id: ${req.params.id} not found.] : [Hostname: ${req.hostname}] : [Remote IP Address: ${req.ip}] : [Resource URL: ${req.originalUrl}] : [Request Method: ${req.method}]`
+    );
+
+    return next(
+      new ErrorResponse(`User with id: ${req.params.id} not found.`),
+      404
+    );
   }
 
   res.status(200).json({
     success: true,
   });
-};
+});

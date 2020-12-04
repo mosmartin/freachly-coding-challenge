@@ -19,7 +19,7 @@ transport.on('rotate', function (oldFilename, newFilename) {
 
 const logger = createLogger({
   level: 'silly',
-  format: combine(label({ label: 'log' }), timestamp(), prettyPrint()),
+  format: combine(label({ label: 'freachly-app' }), timestamp(), prettyPrint()),
   defaultMeta: { service: 'freachly-martin-challenge-server' },
   transports: [transport],
 });
