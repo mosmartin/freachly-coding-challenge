@@ -4,6 +4,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const debug = require('debug')('app:server');
+const dbConnect = require('../config/database');
 const userRoute = require('../src/routes/user.routes');
 const log = require('./middleware/logger');
 
@@ -13,13 +14,16 @@ const app = express();
 // secure server by setting various HTTP headers.
 app.use(helmet());
 
-// handle cors errors
+// handle cors
 app.use(cors());
 
 // dev logging middleware
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
+
+// connect to the database
+dbConnect();
 
 // mount routes
 app.use('/api/v1/users', userRoute);
