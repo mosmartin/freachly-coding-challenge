@@ -1,0 +1,29 @@
+{
+  "name": "freachly-coding-challenge",
+  "version": "1.0.0",
+  "description": "CRUD operations and the retrieval of basic statistical data.",
+  "main": "./src/server",
+  "scripts": {
+    "start": "NODE_ENV=production node ./src/server",
+    "dev": "nodemon ./src/server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mosmartin/freachly-coding-challenge.git"
+  },
+  "author": "Martin Macharia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mosmartin/freachly-coding-challenge/issues"
+  },
+  "homepage": "https://github.com/mosmartin/freachly-coding-challenge#readme",
+  "dependencies": {
+    "debug": "^4.3.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
