@@ -1,17 +1,16 @@
-const debug = require('debug')('app:user-controller');
 const ErrorResponse = require('../utils/ErrorResponse');
 const asyncHandler = require('../middleware/async');
 const User = require('../models/User.model');
 const log = require('../middleware/logger');
 
-exports.getUsers = async (req, res, next) => {
+exports.getUsers = asyncHandler(async (req, res, next) => {
   const users = await User.find().select('-__v');
 
   res.status(200).json({
     success: true,
     data: users,
   });
-};
+});
 
 exports.getUser = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.params.id).select('-__v');
@@ -35,6 +34,8 @@ exports.getUser = asyncHandler(async (req, res, next) => {
 
 exports.createUser = asyncHandler(async (req, res, next) => {
   const user = await User.create(req.body);
+
+  log.info(`User with id: ${user._id} created.`);
 
   res.status(201).json({
     success: true,
@@ -66,7 +67,7 @@ exports.updateUser = asyncHandler(async (req, res, next) => {
 });
 
 exports.deleteUser = asyncHandler(async (req, res, next) => {
-  const user = await User.findByIdAndDelete(req.params.id);
+  const user = await User.findById(req.params.id);
 
   if (!user) {
     log.error(
@@ -78,6 +79,10 @@ exports.deleteUser = asyncHandler(async (req, res, next) => {
       404
     );
   }
+
+  user.remove();
+
+  log.info(`User with id: ${user._id} deleted.`);
 
   res.status(200).json({
     success: true,
