@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const log = require('../middleware/logger');
 
 const { Schema } = mongoose;
 
@@ -35,6 +36,13 @@ const userSchema = new Schema({
     required: [true, 'Please add a username'],
     trim: true,
   },
+});
+
+// cascade delete comments when a user is deleted
+userSchema.pre('remove', async function (next) {
+  log.info(`Comments deleted for userId ${this._id}`);
+  await this.model('Comment').deleteMany({ userId: this._id });
+  next();
 });
 
 // create the model
