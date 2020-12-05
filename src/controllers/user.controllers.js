@@ -5,7 +5,7 @@ const User = require('../models/User.model');
 const log = require('../middleware/logger');
 
 exports.getUsers = async (req, res, next) => {
-  const users = await User.find();
+  const users = await User.find().select('-__v');
 
   res.status(200).json({
     success: true,
@@ -14,7 +14,7 @@ exports.getUsers = async (req, res, next) => {
 };
 
 exports.getUser = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(req.params.id);
+  const user = await User.findById(req.params.id).select('-__v');
 
   if (!user) {
     log.error(
