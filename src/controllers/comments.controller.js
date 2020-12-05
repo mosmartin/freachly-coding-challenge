@@ -75,3 +75,26 @@ exports.updateComment = asyncHandler(async (req, res, next) => {
 
   res.status(200).json(comment);
 });
+
+exports.deleteComment = asyncHandler(async (req, res, next) => {
+  const comment = await Comment.findById(req.params.id);
+
+  if (!comment) {
+    log.error(
+      `[Comment with id: ${req.params.id} not found.] : [Hostname: ${req.hostname}] : [Remote IP Address: ${req.ip}] : [Resource URL: ${req.originalUrl}] : [Request Method: ${req.method}]`
+    );
+
+    return next(
+      new ErrorResponse(`Comment with id: ${req.params.id} not found.`),
+      404
+    );
+  }
+
+  await Comment.remove();
+
+  log.info(`Comment with id: ${comment._id} deleted.`);
+
+  res.status(200).json({
+    success: true,
+  });
+});
