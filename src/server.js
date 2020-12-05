@@ -8,6 +8,7 @@ const errorHandler = require('./middleware/errors');
 const dbConnect = require('../config/database');
 const log = require('./middleware/logger');
 const usersRoute = require('./routes/user.routes');
+const commentsRoute = require('./routes/comment.routes');
 
 // instantiate the app
 const app = express();
@@ -31,6 +32,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // mount routes
 app.use('/api/v1/users', usersRoute);
+app.use('/api/v1/comments', commentsRoute);
 
 // error handling middleware
 app.use(errorHandler);

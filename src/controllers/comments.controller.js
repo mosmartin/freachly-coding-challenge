@@ -51,3 +51,27 @@ exports.addComment = asyncHandler(async (req, res, next) => {
 
   res.status(201).json(comment);
 });
+
+exports.updateComment = asyncHandler(async (req, res, next) => {
+  let comment = await Comment.findById(req.params.id);
+
+  if (!comment) {
+    log.error(
+      `[Comment with id: ${req.params.id} not found.] : [Hostname: ${req.hostname}] : [Remote IP Address: ${req.ip}] : [Resource URL: ${req.originalUrl}] : [Request Method: ${req.method}]`
+    );
+
+    return next(
+      new ErrorResponse(`Comment with id: ${req.params.id} not found.`),
+      404
+    );
+  }
+
+  comment = await Comment.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  log.info(`Comment with id: ${comment._id} updated.`);
+
+  res.status(200).json(comment);
+});
