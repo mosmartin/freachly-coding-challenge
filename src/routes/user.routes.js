@@ -5,9 +5,15 @@ const {
   createUser,
   updateUser,
   deleteUser,
-} = require('../controllers/user.controllers');
+} = require('../controllers/users.controller');
+
+// resourse router
+const commentRouter = require('./comment.routes');
 
 const router = express.Router();
+
+// re-route to comments router
+router.use('/:userId/comments', commentRouter);
 
 router.route('/').get(getUsers).post(createUser);
 
