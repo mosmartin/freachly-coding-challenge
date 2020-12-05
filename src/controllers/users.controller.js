@@ -6,10 +6,7 @@ const log = require('../middleware/logger');
 exports.getUsers = asyncHandler(async (req, res, next) => {
   const users = await User.find().select('-__v');
 
-  res.status(200).json({
-    success: true,
-    data: users,
-  });
+  res.status(200).json(users);
 });
 
 exports.getUser = asyncHandler(async (req, res, next) => {
@@ -26,10 +23,7 @@ exports.getUser = asyncHandler(async (req, res, next) => {
     );
   }
 
-  res.status(200).json({
-    success: true,
-    data: user,
-  });
+  res.status(200).json(user);
 });
 
 exports.createUser = asyncHandler(async (req, res, next) => {
@@ -37,10 +31,7 @@ exports.createUser = asyncHandler(async (req, res, next) => {
 
   log.info(`User with id: ${user._id} created.`);
 
-  res.status(201).json({
-    success: true,
-    data: user,
-  });
+  res.status(201).json(user);
 });
 
 exports.updateUser = asyncHandler(async (req, res, next) => {
@@ -60,10 +51,7 @@ exports.updateUser = asyncHandler(async (req, res, next) => {
     );
   }
 
-  res.status(200).json({
-    success: true,
-    data: user,
-  });
+  res.status(200).json(user);
 });
 
 exports.deleteUser = asyncHandler(async (req, res, next) => {
