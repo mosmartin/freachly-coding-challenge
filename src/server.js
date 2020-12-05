@@ -6,8 +6,8 @@ const morgan = require('morgan');
 const debug = require('debug')('app:server');
 const errorHandler = require('./middleware/errors');
 const dbConnect = require('../config/database');
-const userRoute = require('../src/routes/user.routes');
 const log = require('./middleware/logger');
+const usersRoute = require('./routes/user.routes');
 
 // instantiate the app
 const app = express();
@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // mount routes
-app.use('/api/v1/users', userRoute);
+app.use('/api/v1/users', usersRoute);
 
 // error handling middleware
 app.use(errorHandler);
