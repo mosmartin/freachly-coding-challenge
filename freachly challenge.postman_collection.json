@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "aa715985-bd06-49c7-a736-711121d5551b",
+		"name": "freachly challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contact\": {\n        \"firstName\": \"\",\n        \"lastName\": \"\",\n        \"email\": \"\"\n    },\n    \"profilePictureUrl\": \"https://scontent-frx5-1.cdninstagram.com/v/t51.2885-19/s150x150/49612912_2150818395171498_7203954774499131392_n.jpg?_nc_ht=scontent-frx5-1.cdninstagram.com&_nc_ohc=3oboZZ9BkAQAX9r5efG&oh=ba8a90439c3fe93a550621ae0e07e1b3&oe=5E882D66\",\n    \"username\": \"mel_apusernamekt\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/users/5fca3173b24a107d74dc5f7d",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"5fca3173b24a107d74dc5f7d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contact\": {\n        \"firstName\": \"Mos\",\n        \"lastName\": \"Martin\",\n        \"email\": \"\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/users/5fc9ffdaf523527a73fe477322",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"5fc9ffdaf523527a73fe477322"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/users/5fcbd28b39d95fa5f3f150fa",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"5fcbd28b39d95fa5f3f150fa"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "comments",
+			"item": [
+				{
+					"name": "create comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"hashTags\": [\n      \"ffmblogger\",\n      \"sunset\",\n      \"sunporn\",\n      \"germanblogger\",\n      \"raindrops\",\n      \"sunsetlovers\",\n      \"rainbowsky\",\n      \"meistershot\",\n      \"diewocheaufinstagram\",\n      \"bluesky\",\n      \"blogger_de\",\n      \"skyporn\",\n      \"frankfurt\",\n      \"architecturelovers\",\n      \"architecture\",\n      \"frankfurtdubistsowunderbar\",\n      \"archy\",\n      \"frankfurtblogger\",\n      \"sunrise\",\n      \"skypornpics\",\n      \"lovers\",\n      \"archlove\",\n      \"beautifulview\",\n      \"sundowner\",\n      \"weekendlove\",\n      \"roses\",\n      \"shotoniphone\",\n      \"valentinesday\",\n      \"flowers\"\n    ],\n    \"mentions\": [],\n    \"text\": \"#ffmblogger #sunset #sunporn #germanblogger #raindrops #sunsetlovers #rainbowsky #meistershot #diewocheaufinstagram #bluesky #blogger_de #skyporn #frankfurt #architecturelovers #architecture #frankfurtdubistsowunderbar #archy #frankfurtblogger #sunrise #skypornpics #lovers #archlove #beautifulview #sundowner #weekendlove #roses #shotoniphone #valentinesday #flowers\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/users/5fcc227d406341b9f1cc10da/comments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"5fcc227d406341b9f1cc10da",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all comments for a user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/users/5fcc227d406341b9f1cc10da/comments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"5fcc227d406341b9f1cc10da",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update comment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"Updated Comment!!!!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/comments/5fcbe3b4844d61aedc420c6a",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"comments",
+								"5fcbe3b4844d61aedc420c6a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/comments/5fcbe3b4844d61aedc420c6a",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"comments",
+								"5fcbe3b4844d61aedc420c6a"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
